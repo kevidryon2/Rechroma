@@ -5,8 +5,6 @@
 
 #define NUM_GAMESTATES 2
 
-#define VERSTR "v0.03"
-
 #define STATE_TITLESCREEN 0
 #define STATE_LEVEL 1
 
@@ -62,7 +60,6 @@ void executeState(int state) {
         dv4++;
       }
     }
-    printf("%d, %d, %d, %d, %d\n", dv1, dv2, dv3, dv4, state);
     cputs(VERSTR, 0, 19, WHITE, BLACK);
   }
   exit(0);

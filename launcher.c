@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include <stdio.h>
 #include <errno.h>
+#include "rrfconstants.h"
 
 char dbuff[16*65536];
 
@@ -25,7 +26,7 @@ void draw() {
   if (started) {
     DrawText("Press X to stop RECHROMA", 10, 415, 20, RAYWHITE); 
   } else {
-    DrawText("Press R to launch RECHROMA\nCurrent version: v0.03", 10, 415, 20, RAYWHITE);
+    DrawText(TextFormat("Press R to launch RECHROMA\nCurrent version: %s", VERSTR), 10, 415, 20, RAYWHITE);
   }
   DrawText("News",275,60,30,RAYWHITE);
 }

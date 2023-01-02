@@ -6,32 +6,32 @@
 
 #pragma once
 
+#define VERSTR "v0.03_01"
+
 #define MAX_LEVELS (8*10)
 
-const short currver = 0x0030;
-const short currver_re = 0x3000;
-
-typedef char levelmap[30][20];
+const short currver = 0x0031;
+const short currver_re = 0x3100;
 
 typedef struct {
-  short version; 
+  char map[30][20];
+} leveldata;
+
+typedef struct {
+  short version;
   char checksum;
-  levelmap levels[MAX_LEVELS];
+  leveldata levels[MAX_LEVELS];
 } rrf;
 
 void ldrrf(rrf *rrf_buffer) {
-  printf("a\n");
-  FILE *data = fopen(gameDataPath("data.rrf"), "r");
+  FILE *data = fopen(gameDataPath("assets/data.rrf"), "r");
   if (!data) {
-    crash("missing data.rrf",TextFormat("Errno: %d", errno));
+    crash("can't access data.rrf",TextFormat("Errno: %d", errno));
   }
   short version = -555;
   char file_checksum = EOF;
-  printf("a\n");
   fread(&version, sizeof(char), 2, data);
   fread(&file_checksum, sizeof(char), 1, data);
-  printf("a\n");
-  printf("a\n");
   if (currver != version) {
     if (file_checksum == EOF) {
       crash("data.rrf is empty","");
@@ -39,9 +39,7 @@ void ldrrf(rrf *rrf_buffer) {
       crash("invalid data.rrf version", TextFormat("Version %04x",version));
     }
   }
-  printf("c\n");
-  fread(&rrf_buffer->levels, sizeof(levelmap)*MAX_LEVELS, 1, data);
-  printf("c\n");
+  fread(&rrf_buffer->levels, sizeof(leveldata)*MAX_LEVELS, 1, data);
   char checksum = 0;
   for (int i=0; i<sizeof(rrf_buffer->levels); i++) {
     checksum += *(((char*)rrf_buffer->levels)+i) + i;

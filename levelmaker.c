@@ -9,20 +9,31 @@ rrf res;
 int x,y,selb = 1;
 
 void update() {
+  x %= 30;
+  x = (x<0)?29:x;
+  y %= 20;
+  y = (y<0)?19:y;
   int k = GetKeyPressed();
   switch (k) {
     case KEY_UP: y--; break;
     case KEY_DOWN: y++; break;
     case KEY_LEFT: x--; break;
     case KEY_RIGHT: x++; break;
-  case KEY_Z: res.levels[clvl][x][y]=selb; break;
-  case KEY_X: res.levels[clvl][x][y]=0; break;
+  case KEY_Z: res.levels[clvl].map[x][y]=selb; break;
+  case KEY_X: res.levels[clvl].map[x][y]=0; break;
   case KEY_Q: dv1++; break;
   case KEY_W: dv1--; break;
   case KEY_J: clvl--; break;
   case KEY_K: clvl++; break;
   case KEY_O: selb--; break;
   case KEY_P: selb++; break;
+  case KEY_D:
+    for (int x=0; x<30; x++) {
+      for (int y=0; y<20; y++) {
+        res.levels[clvl].map[x][y] = 0;
+      }
+    }
+    break;
   case KEY_S:;
     FILE *fp = fopen("data.rrf","w");
     res.version = currver;
