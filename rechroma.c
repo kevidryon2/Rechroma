@@ -74,17 +74,22 @@ int main() {
   nothingness = (char*)malloc(355360);
 	InitWindow(720,480,"Rechroma");
 	SetTargetFPS(60);
+  printf("Loading logo...\n");
   rechromalogo=LoadTexture("assets/rechromalogo.png");
   rechromalogo_small.i=LoadImage("assets/rechromalogo.png");
   ImageResizeNN(&rechromalogo_small.i,16,16);
   rechromalogo_small.t=LoadTextureFromImage(rechromalogo_small.i);
   SetWindowIcon(rechromalogo_small.i);
+  printf("Initializing Audio...\n");
   InitAudioDevice();
-  bumpsfx = LoadSound("bump.wav");
+  
   if (!IsAudioDeviceReady()) {
     crash("Cannot initialize audio", "");
   }
+  printf("Loading sounds...\n");
+  loadSounds();
 
+  printf("RECHROMA is loading...\n");
   ldrrf(&res);
   
 	executeState(STATE_TITLESCREEN);

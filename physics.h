@@ -75,15 +75,15 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
 Sound bumpsfx;
 
 void bump() {
-  PlaySound(bumpsfx);
+  playSound(SOUND_BUMP);
 }
 
 void breakblock() {
-  PlaySound(bumpsfx);
+  playSound(SOUND_BREAK);
 }
 
 void push() {
-  PlaySound(bumpsfx);
+  playSound(SOUND_PUSH);
 }
 
 int playeritems[NUM_ITEMS];
@@ -140,14 +140,18 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
     if (!CURRMAP[px+xm*2][py+ym*2]) {
       CURRMAP[px+xm*2][py+ym*2] = block;
       CURRDVAL[px+xm*2][py+ym*2] = dval;
+      CURRMAP[px+xm][py+ym] = 0;
+      px+=xm; py+=ym;
       push();
+    } else {
+      bump();
+    }
+    break;
+
   case PB:
       CURRMAP[px+xm][py+ym] = 0;
       px+=xm; py+=ym;
       breakblock();
-    } else {
-      bump();
-    }
     break;
 
   case PS:
