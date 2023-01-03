@@ -65,7 +65,7 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
   {PT,PT,PT,PT,PT,PT,PT},
   {PG,PG,PG,PG,PG,PG,PG},
   {PK,PK,PK,PK,PK,PK,PK},
-  {PN},
+  {PN,PN,PN,PN,PN,PN,PN,PN},
   {PS}
 
 };
@@ -123,6 +123,11 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
       bump();
     }
     break;
+
+  case PN:
+    clvl+=dval-4;
+    break;
+
   case PS:
     bump(); break;
   }

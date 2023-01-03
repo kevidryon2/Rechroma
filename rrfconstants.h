@@ -14,7 +14,7 @@ const short currver = 0x0040;
 const short currver_re = 0x4000;
 
 #define NUM_BLOCKS 8
-#define MAX_DATAVALS 7
+#define MAX_DATAVALS 8
 
 int blocktile[NUM_BLOCKS][MAX_DATAVALS] = {
     {0},
@@ -23,7 +23,7 @@ int blocktile[NUM_BLOCKS][MAX_DATAVALS] = {
     {11,12,13,14,15,16,17},
     {18,19,20,21,22,23,24},
     {25,26,27,28,29,30,31},
-    {129},
+    {129,129,129,129,129,129,129,129},
     {130}
 };
 
