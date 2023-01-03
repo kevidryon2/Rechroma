@@ -1,6 +1,9 @@
 #include "raylib.h"
 #include "rrfconstants.h"
 
+#define CURRMAP res.levels[clvl].map
+#define CURRDVAL res.levels[clvl].dvalmap
+
 int clvl;
 rrf res;
 
@@ -69,6 +72,10 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
 
 #define NUM_ITEMS 6
 
+void bump() {
+  //TODO play bump sfx
+}
+
 int playeritems[NUM_ITEMS];
 
 int item_to_tile[NUM_ITEMS] = {
@@ -94,8 +101,16 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
     case PG:
 
     playeritems[tileparams[block][dval]]++;
-
+    CURRMAP[px+xm][py+ym] = 0;
+    px+=xm; py+=ym;
     break;
 
+  case PK:
+    if (playeritems[tileparams[block][dval]] > 0) {
+      playeritems[tileparams[block][dval]]--;
+      px+=xm; py+=ym;
+    } else {
+
+    }
   }
 }

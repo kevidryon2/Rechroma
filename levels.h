@@ -10,10 +10,7 @@
 #include "physics.h"
 
 //TODO v0.04: Work on a system where every block has a data value
-
-#define CURRMAP res.levels[clvl].map
-#define CURRDVAL res.levels[clvl].dvalmap
-
+//
 void gotolevel(int lvl) {
   bool found_spawn = false;
   for (int x=0; x<30; x++) {
@@ -45,7 +42,7 @@ void lupdate() {
   }
   px %= 30;
   px = (px<0)?29:px;
-  py %= 20;
+  py %= 19;
   py = (py<0)?19:py;
 }
 
@@ -63,5 +60,5 @@ void ldraw() {
   cputc('-',1,19,WHITE,BLACK);
   cputc('0'+clvl%10,2,19,WHITE,BLACK);
   cputc(player, px, py, worldcolors[pcol], BLACK);
-  cputs(TextFormat("X:%02d Y:%02d",px,py),11,19,WHITE,BLACK);
+  cputs(TextFormat("X:%02d Y:%02d",px,py),4,19,WHITE,BLACK);
 }

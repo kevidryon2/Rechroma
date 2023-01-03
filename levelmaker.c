@@ -13,7 +13,7 @@ int seld = 0;
 void update() {
   x %= 30;
   x = (x<0)?29:x;
-  y %= 20;
+  y %= 19;
   y = (y<0)?19:y;
   int k = GetKeyPressed();
   switch (k) {
@@ -65,6 +65,7 @@ void draw() {
   cputs("SEL",4,19,GOLD,BLACK);
   cputc(':',  7,19,WHITE,BLACK);
   cputc(blocktile[selb][seld], 8,19,tilecolors[selb][seld],BLACK);
+  cputc(0,9,19,tilecolors[selb][seld],BLACK);
   for (int i=9; i<40; i++) {
     //cputc(i+scrolloffset,i,19,tilecolors[i+scrolloffset],BLACK);
   }
