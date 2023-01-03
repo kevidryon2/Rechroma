@@ -54,7 +54,7 @@ int tileparams[NUM_BLOCKS][MAX_DATAVALS] = {
     {1,2,3,4,5,6,7},
     {0,1,2,3,4,5,6},
     {0,1,2,3,4,5,6},
-    {0},
+    {0,0,0,0,0,0,0,0},
     {0}
 };
 
@@ -75,6 +75,14 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
 Sound bumpsfx;
 
 void bump() {
+  PlaySound(bumpsfx);
+}
+
+void breakblock() {
+  PlaySound(bumpsfx);
+}
+
+void push() {
   PlaySound(bumpsfx);
 }
 
@@ -126,6 +134,20 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
 
   case PN:
     clvl+=dval-4;
+    break;
+
+  case PP:
+    if (!CURRMAP[px+xm*2][py+ym*2]) {
+      CURRMAP[px+xm*2][py+ym*2] = block;
+      CURRDVAL[px+xm*2][py+ym*2] = dval;
+      push();
+  case PB:
+      CURRMAP[px+xm][py+ym] = 0;
+      px+=xm; py+=ym;
+      breakblock();
+    } else {
+      bump();
+    }
     break;
 
   case PS:

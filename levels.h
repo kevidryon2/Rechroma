@@ -9,8 +9,7 @@
 #include <unistd.h>
 #include "physics.h"
 
-//TODO v0.04: Work on a system where every block has a data value
-//
+
 void gotolevel(int lvl) {
   bool found_spawn = false;
   for (int x=0; x<30; x++) {
@@ -60,7 +59,7 @@ void ldraw() {
   cputc('-',1,19,WHITE,(Color){32,32,32,255});
   cputc('0'+clvl%10,2,19,WHITE,(Color){32,32,32,255});
   cputc(player, px, py, worldcolors[pcol],(Color){32,32,32,255});
-  cputs(TextFormat("X:%02d Y:%02d ",px,py),4,19,WHITE,(Color){32,32,32,255});
+  cputs(TextFormat(" X:%02d Y:%02d                                ",px,py),3,19,WHITE,(Color){32,32,32,255});
   int x=14;
   for (int i=0; i<NUM_ITEMS; i++) {
     for (int j=0; j<playeritems[i]; j++) {
