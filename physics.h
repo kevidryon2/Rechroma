@@ -72,8 +72,10 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
 
 #define NUM_ITEMS 7
 
+Sound bumpsfx;
+
 void bump() {
-  //TODO play bump sfx
+  PlaySound(bumpsfx);
 }
 
 int playeritems[NUM_ITEMS];
@@ -96,6 +98,8 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
     case PC:
     if (pcol == tileparams[block][dval]) {
       px+=xm; py+=ym;
+    } else {
+      bump();
     }
     break;
 
@@ -116,7 +120,10 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
       playeritems[tileparams[block][dval]]--;
       px+=xm; py+=ym;
     } else {
-
+      bump();
     }
+    break;
+  case PS:
+    bump(); break;
   }
 }

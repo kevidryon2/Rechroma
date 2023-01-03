@@ -29,8 +29,10 @@ void executeState(int state) {
   while (!WindowShouldClose()) {
     void *malloc_tester = malloc(1);
     if (!malloc_tester) {
+      free(nothingness);
       crash("Out of memory","");
     }
+    free(malloc_tester);
 		states[state].updatefn();
 		BeginDrawing();
 		states[state].drawfn();
@@ -78,7 +80,7 @@ int main() {
   rechromalogo_small.t=LoadTextureFromImage(rechromalogo_small.i);
   SetWindowIcon(rechromalogo_small.i);
   InitAudioDevice();
-  
+  bumpsfx = LoadSound("bump.wav");
   if (!IsAudioDeviceReady()) {
     crash("Cannot initialize audio", "");
   }

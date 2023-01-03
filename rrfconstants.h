@@ -51,7 +51,7 @@ void ldrrf(rrf *rrf_buffer) {
     if (file_checksum == EOF) {
       crash("data.rrf is empty","");
     } else {
-      crash("invalid data.rrf version", TextFormat("Version %04x",version));
+      printf("invalid data.rrf version %s\n", TextFormat("Version %04x",version));
     }
   }
   fread(&rrf_buffer->levels, sizeof(leveldata)*MAX_LEVELS, 1, data);
