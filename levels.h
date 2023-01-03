@@ -12,12 +12,13 @@
 //TODO v0.04: Work on a system where every block has a data value
 
 #define CURRMAP res.levels[clvl].map
+#define CURRDVAL res.levels[clvl].dvalmap
 
 void gotolevel(int lvl) {
   bool found_spawn = false;
   for (int x=0; x<30; x++) {
     for (int y=0; y<20; y++) {
-      if (CURRMAP[x][y] == player) {
+      if (CURRMAP[x][y] == 7) {
         found_spawn = true;
         px = x; py = y;
         CURRMAP[x][y] = 0;
@@ -33,14 +34,19 @@ void linit() {
 void lupdate() {
   switch (GetKeyPressed()) {
     case KEY_W:
-      checkCollision(CURRMAP[px][py-1],0,-1);
+      checkCollision(CURRMAP[px][py-1],CURRDVAL[px][py-1],0,-1);
       break;
-    case KEY_S: py++; break;
-    case KEY_A: px--; break;
-    case KEY_D: px++; break;
-    case KEY_U: pcol--; break;
-    case KEY_I: pcol++; break;
+    case KEY_S:
+      checkCollision(CURRMAP[px][py+1],CURRDVAL[px][py+1],0,1);; break;
+    case KEY_A:
+      checkCollision(CURRMAP[px-1][py],CURRDVAL[px-1][py],-1,0);; break;
+    case KEY_D:
+      checkCollision(CURRMAP[px+1][py],CURRDVAL[px+1][py],1,0);; break;
   }
+  px %= 30;
+  px = (px<0)?29:px;
+  py %= 20;
+  py = (py<0)?19:py;
 }
 
 bool editor = false;
@@ -48,7 +54,9 @@ bool editor = false;
 void ldraw() {
   for (int x=0; x<40; x++) {
     for (int y=0; y<30; y++) {
-      cputc(CURRMAP[x][y], x, y, tilecolors[CURRMAP[x][y]], BLACK);
+      cputc(
+      blocktile [ CURRMAP[x][y] ] [ CURRDVAL[x][y] ], x, y,
+      tilecolors[ CURRMAP[x][y] ] [ CURRDVAL[x][y] ], BLACK);
     }
   }
   cputc('A'+(clvl/10),0,19,worldcolors[clvl/10],BLACK);

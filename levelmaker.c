@@ -6,7 +6,9 @@
 int scrolloffset = -9;
 
 rrf res;
-int x,y,selb = 1;
+int x,y;
+int selb = 1;
+int seld = 0;
 
 void update() {
   x %= 30;
@@ -19,12 +21,14 @@ void update() {
     case KEY_DOWN: y++; break;
     case KEY_LEFT: x--; break;
     case KEY_RIGHT: x++; break;
-  case KEY_Z: res.levels[clvl].map[x][y]=selb; break;
-  case KEY_X: res.levels[clvl].map[x][y]=0; break;
+  case KEY_Z: CURRMAP[x][y]=selb; CURRDVAL[x][y]=seld; break;
+  case KEY_X: CURRMAP[x][y]=0; CURRDVAL[x][y]=0; break;
   case KEY_Q: dv1++; break;
   case KEY_W: dv1--; break;
   case KEY_J: clvl--; break;
   case KEY_K: clvl++; break;
+  case KEY_U: seld--; break;
+  case KEY_I: seld++; break;
   case KEY_O: selb--; break;
   case KEY_P: selb++; break;
   case KEY_D:
@@ -50,6 +54,7 @@ void update() {
     }
     break;
   }
+  lupdate();
 }
 
 void draw() {
@@ -59,11 +64,11 @@ void draw() {
   
   cputs("SEL",4,19,GOLD,BLACK);
   cputc(':',  7,19,WHITE,BLACK);
-  cputc(selb, 8,19,tilecolors[selb],BLACK);
+  cputc(blocktile[selb][seld], 8,19,tilecolors[selb][seld],BLACK);
   for (int i=9; i<40; i++) {
     //cputc(i+scrolloffset,i,19,tilecolors[i+scrolloffset],BLACK);
   }
-  cputs(TextFormat("X:%02d Y:%02d",x,y),11,19,WHITE,BLACK);
+  cputs(TextFormat("X:%02d Y:%02d B:%02d D:%02d",x,y,selb,seld),10,19,WHITE,BLACK);
 }
 
 int main() {

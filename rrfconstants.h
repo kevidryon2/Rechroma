@@ -6,15 +6,30 @@
 
 #pragma once
 
-#define VERSTR "v0.03_01"
+#define VERSTR "v0.04"
 
 #define MAX_LEVELS (8*10)
 
-const short currver = 0x0031;
-const short currver_re = 0x3100;
+const short currver = 0x0040;
+const short currver_re = 0x4000;
+
+#define NUM_BLOCKS 8
+#define MAX_DATAVALS 7
+
+int blocktile[NUM_BLOCKS][MAX_DATAVALS] = {
+    {0},
+    {1,2,3,128},
+    {4,5,6,7,8,9,10},
+    {11,12,13,14,15,16,17},
+    {18,19,20,130,21,22,23},
+    {24,25,26,131,27,28,29},
+    {130},
+    {131}
+};
 
 typedef struct {
   char map[30][20];
+  char dvalmap[30][20];
 } leveldata;
 
 typedef struct {

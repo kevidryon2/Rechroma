@@ -83,7 +83,6 @@ int main() {
     crash("Cannot initialize audio", "");
   }
 
-  font = LoadFont("font.ttf");
   ldrrf(&res);
   
 	executeState(STATE_TITLESCREEN);

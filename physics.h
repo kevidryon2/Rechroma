@@ -14,6 +14,7 @@ typedef enum {
   PASS_GIVE,
   PASS_NEXTLEVEL,
   PASS_SOLID,
+  PASS_BREAK,
   PASS_PUSH
 } collision_type;
 
@@ -25,55 +26,76 @@ typedef enum {
   PG = PASS_GIVE,
   PN = PASS_NEXTLEVEL,
   PS = PASS_SOLID,
+  PB = PASS_BREAK,
   PP = PASS_PUSH
 } collision_type_short;
 
-Color tilecolors[] = {
-    BLACK,WHITE,WHITE,LIGHTGRAY,
-    GOLD,ORANGE,RED,GOLD,VIOLET,BLUE,GREEN,
-    GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN,
-    GOLD,ORANGE,RED,VIOLET,BLUE,GREEN,
-    GOLD,ORANGE,RED,VIOLET,BLUE,GREEN,
+Color tilecolors[NUM_BLOCKS][MAX_DATAVALS] = {
+    {BLACK},
+    {WHITE,WHITE,LIGHTGRAY,WHITE},
+    {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
+    {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
+    {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
+    {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
     WHITE,WHITE
 };
 
 Color worldcolors[] = {
-    WHITE,GOLD,ORANGE,RED,VIOLET,BLUE,GREEN,BLACK
+    WHITE,GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN,BLACK
 };
 
-int tileparams[] = {
-  0,0,0,0,
-  1,2,3,0,4,5,6,
-  1,2,3,0,4,5,6,
-  1,2,3,4,5,6,
-  1,2,3,4,5,6,
-  0,0
+int tileparams[NUM_BLOCKS][MAX_DATAVALS] = {
+    {0},
+    {0,0,0,0},
+    {1,2,3,4,5,6,7},
+    {1,2,3,4,5,6,7},
+    {1,2,3,4,5,6,7},
+    {1,2,3,4,5,6,7},
+    {0},
+    {0}
 };
 
-int tilecollision[] = {
-  PA,PS,PP,PS,
-  PC,PC,PC,PS,PC,PC,PC,
-  PT,PT,PT,PS,PT,PT,PT,
-  PG,PG,PG,PG,PG,PG,
-  PK,PK,PK,PK,PK,PK,
-  PN,PS
+int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
+  {PA},
+  {PS,PP,PB,PS},
+  {PC,PC,PC,PC,PC,PC,PC},
+  {PT,PT,PT,PT,PT,PT,PT},
+  {PG,PG,PG,PG,PG,PG,PG},
+  {PK,PK,PK,PK,PK,PK,PK},
+  {PN},
+  {PS}
 
 };
 
-void checkCollision(int block, int xm, int ym) { //X modify, Y modify
-  switch (tilecollision[block]) {
+#define NUM_ITEMS 6
+
+int playeritems[NUM_ITEMS];
+
+int item_to_tile[NUM_ITEMS] = {
+  18, 19, 20, 21, 22, 23
+};
+
+void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
+  printf("%d %d %d\n", tilecollision[block][dval], pcol, tileparams[block][dval]);
+  switch (tilecollision[block][dval]) {
     case PA: px+=xm; py+=ym; break;
 
     case PC:
-    if (pcol == tileparams[block]) {
-      px+=xm;
-
+    if (pcol == tileparams[block][dval]) {
+      px+=xm; py+=ym;
     }
     break;
 
     case PT:
-    pcol = tileparams[block];
+    pcol = tileparams[block][dval];
     px+=xm; py+=ym;
     break;
+
+    case PG:
+
+    playeritems[tileparams[block][dval]]++;
+
+    break;
+
   }
 }
