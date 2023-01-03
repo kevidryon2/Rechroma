@@ -39,10 +39,13 @@ void update() {
     }
     break;
   case KEY_S:;
-    FILE *fp = fopen("data.rrf","w");
+    FILE *fp = fopen(gameDataPath("assets/data.rrf"),"w");
     res.version = currver;
     fwrite(&res,sizeof(rrf),1,fp);
-    fseek(fp,0,SEEK_SET);
+    fclose(fp);
+    fp = fopen("data.rrf","w");
+    res.version = currver;
+    fwrite(&res,sizeof(rrf),1,fp);
     fclose(fp);
     break;
   case KEY_L:
@@ -59,17 +62,22 @@ void update() {
 
 void draw() {
 	ClearBackground(BLACK);
+  for (int i=0; i<30; i++) {
+    cputc(0,i,19,WHITE,(Color){32,32,32,255});
+  }
+
 	ldraw();
+
   DrawRectangleLines(x*8*scalefactor,y*8*scalefactor,8*scalefactor,8*scalefactor,WHITE);
   
-  cputs("SEL",4,19,GOLD,BLACK);
-  cputc(':',  7,19,WHITE,BLACK);
-  cputc(blocktile[selb][seld], 8,19,tilecolors[selb][seld],BLACK);
-  cputc(0,9,19,tilecolors[selb][seld],BLACK);
+  cputs("SEL",4,19,GOLD,(Color){32,32,32,255});
+  cputc(':',  7,19,WHITE,(Color){32,32,32,255});
+  cputc(blocktile[selb][seld], 8,19,tilecolors[selb][seld],(Color){32,32,32,255});
+  cputc(0,9,19,tilecolors[selb][seld],(Color){32,32,32,255});
   for (int i=9; i<40; i++) {
     //cputc(i+scrolloffset,i,19,tilecolors[i+scrolloffset],BLACK);
   }
-  cputs(TextFormat("X:%02d Y:%02d B:%02d D:%02d",x,y,selb,seld),10,19,WHITE,BLACK);
+  cputs(TextFormat("X:%02d Y:%02d B:%02d D:%02d",x,y,selb,seld),10,19,WHITE,(Color){32,32,32,255});
 }
 
 int main() {

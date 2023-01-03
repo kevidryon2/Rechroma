@@ -59,4 +59,5 @@ void ldrrf(rrf *rrf_buffer) {
   for (int i=0; i<sizeof(rrf_buffer->levels); i++) {
     checksum += *(((char*)rrf_buffer->levels)+i) + i;
   }
+  fclose(data);
 }

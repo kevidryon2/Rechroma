@@ -4,13 +4,9 @@ all:
 	make install
 	make run
 
-maker:
-	make tools
-	make install
-	~/.rechroma/maker
-
 launcher:
 	make rechroma_debug
+	make maker
 	#tools/makedropperfiles
 	bash raybuild.sh launcher
 
@@ -28,9 +24,10 @@ clean:
 	
 tools:
 	#gcc makedropper.c -o tools/makedropperfiles
+
+maker:
 	bash raybuild.sh levelmaker
 	cp build/levelmaker tools
-	
 	
 install:
 	echo "mkdir ~/.rechroma; return 0" | sh #If directory already exists (it returns 1), it will stop make (so i made sure it always returned 0)

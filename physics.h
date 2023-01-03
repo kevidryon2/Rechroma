@@ -70,7 +70,7 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
 
 };
 
-#define NUM_ITEMS 6
+#define NUM_ITEMS 7
 
 void bump() {
   //TODO play bump sfx
@@ -78,8 +78,14 @@ void bump() {
 
 int playeritems[NUM_ITEMS];
 
-int item_to_tile[NUM_ITEMS] = {
-  18, 19, 20, 21, 22, 23
+int item_to_id[NUM_ITEMS][2] = {
+  {4,0},
+  {4,1},
+  {4,2},
+  {4,3},
+  {4,4},
+  {4,5},
+  {4,6}
 };
 
 void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify

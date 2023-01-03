@@ -43,7 +43,7 @@ void lupdate() {
   px %= 30;
   px = (px<0)?29:px;
   py %= 19;
-  py = (py<0)?19:py;
+  py = (py<0)?18:py;
 }
 
 bool editor = false;
@@ -56,9 +56,17 @@ void ldraw() {
       tilecolors[ CURRMAP[x][y] ] [ CURRDVAL[x][y] ], BLACK);
     }
   }
-  cputc('A'+(clvl/10),0,19,worldcolors[clvl/10],BLACK);
-  cputc('-',1,19,WHITE,BLACK);
-  cputc('0'+clvl%10,2,19,WHITE,BLACK);
-  cputc(player, px, py, worldcolors[pcol], BLACK);
-  cputs(TextFormat("X:%02d Y:%02d",px,py),4,19,WHITE,BLACK);
+  cputc('A'+(clvl/10),0,19,worldcolors[clvl/10],(Color){32,32,32,255});
+  cputc('-',1,19,WHITE,(Color){32,32,32,255});
+  cputc('0'+clvl%10,2,19,WHITE,(Color){32,32,32,255});
+  cputc(player, px, py, worldcolors[pcol],(Color){32,32,32,255});
+  cputs(TextFormat("X:%02d Y:%02d ",px,py),4,19,WHITE,(Color){32,32,32,255});
+  int x=14;
+  for (int i=0; i<NUM_ITEMS; i++) {
+    for (int j=0; j<playeritems[i]; j++) {
+      int *item = item_to_id[i];
+      cputc(blocktile[item[0]][item[1]], x, 19, tilecolors[item[0]][item[1]], (Color){32,32,32,255});
+      x++;
+    }
+  }
 }

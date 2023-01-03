@@ -8,8 +8,10 @@ char dbuff[16*65536];
 bool started = false;
 
 void update() {
-  if (IsKeyPressed(KEY_R) & !started) {
+  if (IsKeyPressed(KEY_R)) {
     system("~/.rechroma/rechroma &");
+  } else if (IsKeyPressed(KEY_E)) {
+    system("~/.rechroma/maker &");
   }
 }
 
@@ -26,7 +28,7 @@ void draw() {
   if (started) {
     DrawText("Press X to stop RECHROMA", 10, 415, 20, RAYWHITE); 
   } else {
-    DrawText(TextFormat("Press R to launch RECHROMA\nCurrent version: %s", VERSTR), 10, 415, 20, RAYWHITE);
+    DrawText(TextFormat("Press R to launch RECHROMA     Press E to launch editor\nCurrent version: %s", VERSTR), 10, 415, 20, RAYWHITE);
   }
   DrawText("News",275,60,30,RAYWHITE);
 }
