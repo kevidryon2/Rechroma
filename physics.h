@@ -38,6 +38,7 @@ int item_to_id[NUM_ITEMS][2] = {
 };
 
 void gotolevel(int lvl) {
+  clvl = lvl;
   bool found_spawn = false;
   for (int x=0; x<30; x++) {
     for (int y=0; y<20; y++) {
@@ -45,8 +46,12 @@ void gotolevel(int lvl) {
         found_spawn = true;
         px = x; py = y;
         CURRMAP[x][y] = 0;
+        break;
       }
     }
+  }
+  if (!found_spawn) {
+    printf("Can't find player spawn\n");
   }
 }
 
@@ -86,6 +91,7 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
     break;
 
   case PN:
+    printf("%d; %d, %d.\n", clvl+dval-4, clvl, dval);
     gotolevel(clvl+dval-4);
     break;
 
