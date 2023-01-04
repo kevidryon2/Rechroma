@@ -38,7 +38,7 @@ install:
 	cp build/rechroma ~/.rechroma/
 	cp build/launcher ~/.rechroma/
 	cp build/levelmaker ~/.rechroma/maker
-	cp crash.mp3 ~/.rechroma/assets/
+	cp *.wav ~/.rechroma/assets/
 	cp data.rrf ~/.rechroma/assets/
 run:
 	~/.rechroma/launcher
