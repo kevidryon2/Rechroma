@@ -15,13 +15,17 @@ rechroma_debug:
 	bash raybuild.sh rechroma
 	echo "Done!"
 
-rechroma_release:
-	make rechroma_debug
 
 clean:
 	rm build/*.*
 	touch build/rechroma
-	
+
+release:
+	make tools
+	make launcher
+	make install
+	tar -cf build/release.tar *.wav data.rrf build/*
+
 tools:
 	#gcc makedropper.c -o tools/makedropperfiles
 

@@ -9,20 +9,6 @@
 #include <unistd.h>
 #include "physics.h"
 
-
-void gotolevel(int lvl) {
-  bool found_spawn = false;
-  for (int x=0; x<30; x++) {
-    for (int y=0; y<20; y++) {
-      if (CURRMAP[x][y] == 7) {
-        found_spawn = true;
-        px = x; py = y;
-        CURRMAP[x][y] = 0;
-      }
-    }
-  }
-}
-
 void linit() {
   gotolevel(0);
 }
@@ -40,9 +26,9 @@ void lupdate() {
       checkCollision(CURRMAP[px+1][py],CURRDVAL[px+1][py],1,0);; break;
   }
   px %= 30;
-  px = (px<0)?29:px;
+  px = (px<0)?0:px;
   py %= 19;
-  py = (py<0)?18:py;
+  py = (py<0)?0:py;
 }
 
 bool editor = false;
