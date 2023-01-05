@@ -9,6 +9,31 @@
 #include <unistd.h>
 #include "physics.h"
 
+#define DEFAULT_MMT 15
+#define DEFAULT_SWT 10
+#define ATTACK_MMT 6
+
+bool editor = false;
+
+int mmt = DEFAULT_MMT; //Monster Move Timer
+int mwandering = true;
+int swt = 10; //Start Wondering Timer
+
+typedef enum {
+  up, down, left, right
+} Direction;
+
+struct {int xi, yi;} pos_dir[4] = {
+    {0,-1},
+    {0,1},
+    {-1,0},
+    {1,0}
+};
+
+typedef struct {
+          int oldx; int oldy; int newx; int newy;
+        } ScheduledMovement;
+
 void linit() {
   gotolevel(0);
 }
@@ -29,9 +54,29 @@ void lupdate() {
   px = (px<0)?0:px;
   py = (py>18)?18:py;
   py = (py<0)?0:py;
+  if (!editor) {
+    mmt--;
+    if (!mmt) {
+      mmt = DEFAULT_MMT;
+      if (mwandering) {
+        int dir = rand()%4;
+        ScheduledMovement *smovl = (ScheduledMovement*)malloc(sizeof(ScheduledMovement));
+        int smovs;
+        for (int x=0; x<30; x++) {
+          for (int y=0; y<20; y++) {
+            if (CURRMAP[x][y] == 8) {
+              while (CURRMAP[x+pos_dir[dir].xi][y+pos_dir[dir].yi]) dir = rand()%4;
+              CURRMAP[x][y] = 0;
+              CURRDVAL[x][y] = 0;
+              CURRMAP[x+pos_dir[dir].xi][y+pos_dir[dir].yi] = 8;
+              CURRDVAL[x+pos_dir[dir].xi][y+pos_dir[dir].yi] = 0;
+            }
+          }
+        }
+      }
+    }
+  }
 }
-
-bool editor = false;
 
 void ldraw() {
   for (int x=0; x<40; x++) {

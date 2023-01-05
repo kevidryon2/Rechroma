@@ -12,10 +12,10 @@ int blocktile[NUM_BLOCKS][MAX_DATAVALS] = {
     {7,7,7,7,7,7,7},
     {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9},
     {10},
-    {11,11},
-	{'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'},
-	{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'},
-  {'.',',',';',':'}
+    {11},
+	  {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'},
+	  {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'},
+    {'.',',',';',':'}
 };
 
 typedef enum {
@@ -51,7 +51,7 @@ Color tilecolors[NUM_BLOCKS][MAX_DATAVALS] = {
     {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
     {WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE},
     {WHITE},
-    {},
+    {WHITE},
     {WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE},
     {WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE},
     {WHITE,WHITE,WHITE,WHITE}
@@ -70,7 +70,7 @@ int tileparams[NUM_BLOCKS][MAX_DATAVALS] = {
     {0,1,2,3,4,5,6},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0},
-    {0,0},
+    {0},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0}
@@ -85,7 +85,7 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
   {PK,PK,PK,PK,PK,PK,PK},
   {PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN},
   {PS},
-  {PS,PS},
+  {PS},
   {PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA},
   {PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA},
   {PA,PA,PA,PA}
