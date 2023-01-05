@@ -1,7 +1,7 @@
 #include "raylib.h"
 
 #define NUM_BLOCKS 70
-#define MAX_DATAVALS 8
+#define MAX_DATAVALS 16
 
 int blocktile[NUM_BLOCKS][MAX_DATAVALS] = {
     {0},
@@ -9,8 +9,8 @@ int blocktile[NUM_BLOCKS][MAX_DATAVALS] = {
     {4,4,4,4,4,4,4},
     {5,5,5,5,5,5,5},
     {6,6,6,6,6,6,6},
-    {7,7,7,7,7,7,7},
-    {9,9,9,9,9,9,9,9},
+    {7,7,7,7,7,7,7,7,7,7,7,7,7,7},
+    {9},
     {10},
 	{'A','A','A','A','A','A','A','A'},
 	{'B','B','B','B','B','B','B','B'},
@@ -107,7 +107,7 @@ Color tilecolors[NUM_BLOCKS][MAX_DATAVALS] = {
     {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
     {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
     {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
-    {WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE},
+    {WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE},
     {WHITE},
     {WHITE,GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
     {WHITE,GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
@@ -184,7 +184,7 @@ int tileparams[NUM_BLOCKS][MAX_DATAVALS] = {
     {1,2,3,4,5,6,7},
     {0,1,2,3,4,5,6},
     {0,1,2,3,4,5,6},
-    {0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0},
     {0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0},
@@ -257,7 +257,7 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
   {PT,PT,PT,PT,PT,PT,PT},
   {PG,PG,PG,PG,PG,PG,PG},
   {PK,PK,PK,PK,PK,PK,PK},
-  {PN,PN,PN,PN,PN,PN,PN,PN},
+  {PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN},
   {PS},
   {PA,PA,PA,PA,PA,PA,PA,PA},
   {PA,PA,PA,PA,PA,PA,PA,PA},

@@ -92,7 +92,7 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
 
   case PN:
     printf("%d; %d, %d.\n", clvl+dval-4, clvl, dval);
-    gotolevel(clvl+dval-4);
+    gotolevel(clvl+dval-7);
     break;
 
   case PP:
