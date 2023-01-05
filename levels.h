@@ -25,9 +25,9 @@ void lupdate() {
     case KEY_D:
       checkCollision(CURRMAP[px+1][py],CURRDVAL[px+1][py],1,0);; break;
   }
-  px %= 30;
+  px = (px>29)?29:px;
   px = (px<0)?0:px;
-  py %= 19;
+  py = (py>18)?18:py;
   py = (py<0)?0:py;
 }
 

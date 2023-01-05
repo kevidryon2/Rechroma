@@ -11,9 +11,9 @@ int selb = 1;
 int seld = 0;
 
 void update() {
-  cx %= 30;
+  cx = (cx>29)?29:cx;
   cx = (cx<0)?0:cx;
-  cy %= 19;
+  cy = (cy>18)?18:cy;
   cy = (cy<0)?0:cy;
   int k = GetKeyPressed();
   switch (k) {
@@ -63,6 +63,14 @@ void update() {
     seld = 0; break;
   case KEY_E:
     selb=CURRMAP[cx][cy]; seld=CURRDVAL[cx][cy]; break;
+  case KEY_F:
+    for (int x=0; x<30; x++) {
+      for (int y=0; y<20; y++) {
+        CURRMAP[x][y] = selb;
+        CURRDVAL[x][y] = seld;
+      }
+    }
+    break;
   }
   lupdate();
 }

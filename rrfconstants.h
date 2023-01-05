@@ -7,12 +7,12 @@
 
 #pragma once
 
-#define VERSTR "v0.06_01"
+#define VERSTR "v0.07p1"
 
 #define MAX_LEVELS (8*10)
 
-const short currver = 0x0061;
-const short currver_re = 0x6100;
+const short currver = 0x0070;
+const short currver_re = 0x7000;
 
 #define NUM_SOUNDS 4
 
