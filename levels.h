@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include "physics.h"
 
-#define DEFAULT_MMT 15
+#define DEFAULT_MMT 20
 #define DEFAULT_SWT 10
 #define ATTACK_MMT 6
 
@@ -17,7 +17,7 @@ bool editor = false;
 
 int mmt = DEFAULT_MMT; //Monster Move Timer
 int mwandering = true;
-int swt = 10; //Start Wondering Timer
+int swt = 0; //Start Wondering Timer
 
 typedef enum {
   up, down, left, right
@@ -35,7 +35,7 @@ typedef struct {
         } ScheduledMovement;
 
 void linit() {
-  gotolevel(0);
+  gotolevel(6);
 }
 
 void lupdate() {
@@ -57,11 +57,9 @@ void lupdate() {
   if (!editor) {
     mmt--;
     if (!mmt) {
-      mmt = DEFAULT_MMT;
       if (mwandering) {
+        mmt = DEFAULT_MMT;
         int dir = rand()%4;
-        ScheduledMovement *smovl = (ScheduledMovement*)malloc(sizeof(ScheduledMovement));
-        int smovs;
         for (int x=0; x<30; x++) {
           for (int y=0; y<20; y++) {
             if (CURRMAP[x][y] == 8) {
@@ -70,6 +68,9 @@ void lupdate() {
               CURRDVAL[x][y] = 0;
               CURRMAP[x+pos_dir[dir].xi][y+pos_dir[dir].yi] = 8;
               CURRDVAL[x+pos_dir[dir].xi][y+pos_dir[dir].yi] = 0;
+              if (abs(x-px) < 5 & abs(y-py) < 5) {
+                swt += 3;
+              }
             }
           }
         }

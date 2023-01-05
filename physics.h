@@ -25,6 +25,10 @@ void push() {
   playSound(SOUND_PUSH);
 }
 
+void death() {
+  playSound(SOUND_BREAK);
+}
+
 int playeritems[NUM_ITEMS];
 
 int item_to_id[NUM_ITEMS][2] = {
@@ -102,6 +106,12 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
       CURRMAP[px+xm][py+ym] = 0;
       px+=xm; py+=ym;
       push();
+    } else if (CURRMAP[px+xm*2][py+ym*2] == 8) {
+      CURRMAP[px+xm][py+ym] = 0;
+      CURRDVAL[px+xm][py+ym] = 0;
+      CURRMAP[px+xm*2][py+ym*2] = 0;
+      px+=xm; py+=ym;
+      death();
     } else {
       bump();
     }
