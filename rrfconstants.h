@@ -5,9 +5,12 @@
 #include <math.h>
 #include "blocks.h"
 
+#define CURRMAP res.levels[clvl].map
+#define CURRDVAL res.levels[clvl].dvalmap
+
 #pragma once
 
-#define VERSTR "v0.08p2"
+#define VERSTR "v0.08p3"
 
 #define MAX_LEVELS (8*10)
 
@@ -47,6 +50,26 @@ typedef struct {
   char build;
   leveldata levels[MAX_LEVELS];
 } rrf;
+
+rrf res; int clvl;
+
+void setblock(int x, int y, int block, int dval) {
+  CURRMAP[x][y] = block;
+  CURRDVAL[x][y] = dval;
+}
+
+void rmblock(int x, int y) {
+  CURRMAP[x][y] = 0;
+  CURRDVAL[x][y] = 0;
+}
+
+int getblock(int x, int y) {
+  return CURRMAP[x][y];
+}
+
+int getdval(int x, int y) {
+  return CURRDVAL[x][y];
+}
 
 void ldrrf(rrf *rrf_buffer) {
   FILE *data = fopen(gameDataPath("assets/data.rrf"), "r");

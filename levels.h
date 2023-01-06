@@ -38,7 +38,10 @@ void linit() {
   gotolevel(0);
 }
 
+int t = 0;
+
 void lupdate() {
+  t++;
   switch (GetKeyPressed()) {
     case KEY_W:
       checkCollision(CURRMAP[px][py-1],CURRDVAL[px][py-1],0,-1);
@@ -62,12 +65,10 @@ void lupdate() {
         int dir = rand()%4;
         for (int x=0; x<30; x++) {
           for (int y=0; y<20; y++) {
-            if (CURRMAP[x][y] == 8) {
+            if (CURRMAP[x][y] == monster) {
               while (CURRMAP[x+pos_dir[dir].xi][y+pos_dir[dir].yi]) dir = rand()%4;
-              CURRMAP[x][y] = 0;
-              CURRDVAL[x][y] = 0;
-              CURRMAP[x+pos_dir[dir].xi][y+pos_dir[dir].yi] = 8;
-              CURRDVAL[x+pos_dir[dir].xi][y+pos_dir[dir].yi] = 0;
+              rmblock(x,y);
+              setblock(x+pos_dir[dir].xi,y+pos_dir[dir].yi,monster,0);
               if (abs(x-px) < 5 & abs(y-py) < 5) {
                 swt += 3;
               }
@@ -82,9 +83,17 @@ void lupdate() {
 void ldraw() {
   for (int x=0; x<40; x++) {
     for (int y=0; y<30; y++) {
-      cputc(
-      blocktile [ CURRMAP[x][y] ] [ CURRDVAL[x][y] ], x, y,
-      tilecolors[ CURRMAP[x][y] ] [ CURRDVAL[x][y] ], BLACK);
+      if (show_only_editor[CURRMAP[x][y]][CURRDVAL[x][y]]) {
+        if (editor) {
+          cputc(
+          blocktile [ getblock(x,y) ] [ getdval(x,y) ], x, y,
+          tilecolors[ getblock(x,y) ] [ getblock(x,y) ], BLACK);
+        }
+      } else {
+        cputc(
+        blocktile [ CURRMAP[x][y] ] [ CURRDVAL[x][y] ], x, y,
+        tilecolors[ CURRMAP[x][y] ] [ CURRDVAL[x][y] ], BLACK);
+      }
     }
   }
   cputc('A'+(clvl/10),0,19,worldcolors[clvl/10],(Color){32,32,32,255});

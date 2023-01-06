@@ -24,7 +24,10 @@ release:
 	make tools
 	make launcher
 	make install
-	tar -cf build/release.tar *.wav data.rrf build/*
+	cp *.wav build
+	cp data.rrf build
+	cd build
+	tar -cf build/release.tar ./*.*
 
 tools:
 	#gcc makedropper.c -o tools/makedropperfiles

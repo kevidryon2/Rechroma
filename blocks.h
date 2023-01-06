@@ -1,12 +1,25 @@
 #include "raylib.h"
 
 #define NUM_BLOCKS 13
-#define MAX_DATAVALS 26
+#define MAX_DATAVALS 16
 
 typedef enum {
   air = 0,
   stone, colored, dye, key, door, unlockedDoor, warp, player, monster
 } blockid;
+
+bool show_only_editor[NUM_BLOCKS][MAX_DATAVALS] = {
+    {false},
+    {false,false,false,false},
+    {false,false,false,false,false,false,false,false},
+    {false,false,false,false,false,false,false,false},
+    {false,false,false,false,false,false,false,false},
+    {false,false,false,false,false,false,false,false},
+    {false,false,false,false,false,false,false,false},
+    {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
+    {true},
+    {false}
+};
 
 int blocktile[NUM_BLOCKS][MAX_DATAVALS] = {
     {0}, //air
@@ -16,7 +29,7 @@ int blocktile[NUM_BLOCKS][MAX_DATAVALS] = {
     {6,6,6,6,6,6,6}, //key
     {7,7,7,7,7,7,7}, //door
     {12,12,12,12,12,12,12}, //unlocked door
-    {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9}, //warp
+    {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9}, //warp
     {10}, //player
     {11}, //monster
 };

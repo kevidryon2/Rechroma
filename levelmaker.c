@@ -10,12 +10,7 @@ int cx,cy;
 int selb = 1;
 int seld = 0;
 
-void update() {
-  cx = (cx>29)?29:cx;
-  cx = (cx<0)?0:cx;
-  cy = (cy>18)?18:cy;
-  cy = (cy<0)?0:cy;
-  int k = GetKeyPressed();
+void detectkey(int k) {
   switch (k) {
     case KEY_UP: cy--; break;
     case KEY_DOWN: cy++; break;
@@ -72,14 +67,30 @@ void update() {
       }
     }
     break;
-  case KEY_R:
+  case KEY_R:;
+    detectkey(KEY_S);
+    gotolevel(clvl);
+    editor=false;
     while (!IsKeyPressed(KEY_E)) {
       BeginDrawing();
       lupdate();
       ldraw();
       EndDrawing();
     }
+    editor=true;
+    detectkey(KEY_L);
     break;
+  }
+}
+
+void update() {
+  cx = (cx>29)?29:cx;
+  cx = (cx<0)?0:cx;
+  cy = (cy>18)?18:cy;
+  cy = (cy<0)?0:cy;
+  int k;
+  while (k = GetKeyPressed()) {
+    detectkey(k);
   }
 }
 

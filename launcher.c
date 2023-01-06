@@ -26,7 +26,7 @@ void draw() {
   if (started) {
     DrawText("Press X to stop RECHROMA", 10, 415, 20, RAYWHITE); 
   } else {
-    DrawText(TextFormat("Press R to launch RECHROMA     Press E to launch editor\nCurrent version: %s, build %d", VERSTR, currbuild), 10, 415, 20, RAYWHITE);
+    DrawText(TextFormat("Press R to launch RECHROMA     Press E to launch editor\nCurrent version: %s", VERSTR, currbuild), 10, 415, 20, RAYWHITE);
   }
   DrawText("News",275,60,30,RAYWHITE);
 }
