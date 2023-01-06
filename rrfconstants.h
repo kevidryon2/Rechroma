@@ -7,7 +7,7 @@
 
 #pragma once
 
-#define VERSTR "v0.07_01"
+#define VERSTR "v0.08p1"
 
 #define MAX_LEVELS (8*10)
 

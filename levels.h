@@ -35,7 +35,7 @@ typedef struct {
         } ScheduledMovement;
 
 void linit() {
-  gotolevel(6);
+  gotolevel(0);
 }
 
 void lupdate() {
