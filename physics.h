@@ -46,7 +46,7 @@ void gotolevel(int lvl) {
   bool found_spawn = false;
   for (int x=0; x<30; x++) {
     for (int y=0; y<20; y++) {
-      if (CURRMAP[x][y] == 7) {
+      if (CURRMAP[x][y] == player) {
         found_spawn = true;
         px = x; py = y;
         CURRMAP[x][y] = 0;
@@ -81,13 +81,14 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
     case PG:
 
     playeritems[tileparams[block][dval]]++;
-    CURRMAP[px+xm][py+ym] = 0;
+    CURRMAP[px+xm][py+ym] = air;
     px+=xm; py+=ym;
     break;
 
   case PK:
-    if (playeritems[tileparams[block][dval]] > 0) {
+    if (playeritems[tileparams[block][dval]] > air) {
       playeritems[tileparams[block][dval]]--;
+      CURRMAP[px+xm][py+ym] = unlockedDoor;
       px+=xm; py+=ym;
     } else {
       bump();
@@ -95,7 +96,6 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
     break;
 
   case PN:
-    printf("%d; %d, %d.\n", clvl+dval-4, clvl, dval);
     gotolevel(clvl+dval-7);
     break;
 
@@ -106,7 +106,7 @@ void checkCollision(int block, int dval, int xm, int ym) { //X modify, Y modify
       CURRMAP[px+xm][py+ym] = 0;
       px+=xm; py+=ym;
       push();
-    } else if (CURRMAP[px+xm*2][py+ym*2] == 8) {
+    } else if (CURRMAP[px+xm*2][py+ym*2] == monster) {
       CURRMAP[px+xm][py+ym] = 0;
       CURRDVAL[px+xm][py+ym] = 0;
       CURRMAP[px+xm*2][py+ym*2] = 0;

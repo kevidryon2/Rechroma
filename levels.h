@@ -90,7 +90,7 @@ void ldraw() {
   cputc('A'+(clvl/10),0,19,worldcolors[clvl/10],(Color){32,32,32,255});
   cputc('-',1,19,WHITE,(Color){32,32,32,255});
   cputc('0'+clvl%10,2,19,WHITE,(Color){32,32,32,255});
-  cputc(player, px, py, worldcolors[pcol], BLANK);
+  cputc(blocktile[player][0], px, py, worldcolors[pcol], BLANK);
   cputs(TextFormat(" X:%02d Y:%02d                                ",px,py),3,19,WHITE,(Color){32,32,32,255});
   int x=14;
   for (int i=0; i<NUM_ITEMS; i++) {

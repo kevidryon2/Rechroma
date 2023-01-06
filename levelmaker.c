@@ -42,6 +42,7 @@ void update() {
   case KEY_S:;
     FILE *fp = fopen(gameDataPath("assets/data.rrf"),"w");
     res.version = currver;
+    res.build = currbuild;
     fwrite(&res,sizeof(rrf),1,fp);
     fclose(fp);
     fp = fopen("data.rrf","w");
@@ -71,8 +72,15 @@ void update() {
       }
     }
     break;
+  case KEY_R:
+    while (!IsKeyPressed(KEY_E)) {
+      BeginDrawing();
+      lupdate();
+      ldraw();
+      EndDrawing();
+    }
+    break;
   }
-  lupdate();
 }
 
 void draw() {

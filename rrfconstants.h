@@ -7,13 +7,13 @@
 
 #pragma once
 
-#define VERSTR "v0.08p1"
+#define VERSTR "v0.08p2"
 
 #define MAX_LEVELS (8*10)
 
-const short currver = 0x0071;
-const short currver_re = 0x7100;
-
+const short currver = 0x0080;
+const char currbuild = 1;
+const short currver_re = 0x8000;
 #define NUM_SOUNDS 4
 
 #define SOUND_CRASH 0
@@ -44,7 +44,7 @@ typedef struct {
 
 typedef struct {
   short version;
-  char checksum;
+  char build;
   leveldata levels[MAX_LEVELS];
 } rrf;
 
@@ -65,9 +65,6 @@ void ldrrf(rrf *rrf_buffer) {
     }
   }
   fread(&rrf_buffer->levels, sizeof(leveldata)*MAX_LEVELS, 1, data);
-  char checksum = 0;
-  for (int i=0; i<sizeof(rrf_buffer->levels); i++) {
-    checksum += *(((char*)rrf_buffer->levels)+i) + i;
-  }
+
   fclose(data);
 }

@@ -1,21 +1,24 @@
 #include "raylib.h"
 
-#define NUM_BLOCKS 12
+#define NUM_BLOCKS 13
 #define MAX_DATAVALS 26
 
+typedef enum {
+  air = 0,
+  stone, colored, dye, key, door, unlockedDoor, warp, player, monster
+} blockid;
+
 int blocktile[NUM_BLOCKS][MAX_DATAVALS] = {
-    {0},
-    {1,2,3,8},
-    {4,4,4,4,4,4,4},
-    {5,5,5,5,5,5,5},
-    {6,6,6,6,6,6,6},
-    {7,7,7,7,7,7,7},
-    {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9},
-    {10},
-    {11},
-	  {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'},
-	  {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'},
-    {'.',',',';',':'}
+    {0}, //air
+    {1,2,3,8}, //stone
+    {4,4,4,4,4,4,4}, //colored
+    {5,5,5,5,5,5,5}, //dye
+    {6,6,6,6,6,6,6}, //key
+    {7,7,7,7,7,7,7}, //door
+    {12,12,12,12,12,12,12}, //unlocked door
+    {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9}, //warp
+    {10}, //player
+    {11}, //monster
 };
 
 typedef enum {
@@ -49,12 +52,10 @@ Color tilecolors[NUM_BLOCKS][MAX_DATAVALS] = {
     {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
     {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
     {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
+    {GOLD,ORANGE,RED,MAGENTA,VIOLET,BLUE,GREEN},
     {WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE},
     {WHITE},
     {WHITE},
-    {WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE},
-    {WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE},
-    {WHITE,WHITE,WHITE,WHITE}
 };
 
 Color worldcolors[] = {
@@ -68,12 +69,10 @@ int tileparams[NUM_BLOCKS][MAX_DATAVALS] = {
     {1,2,3,4,5,6,7},
     {0,1,2,3,4,5,6},
     {0,1,2,3,4,5,6},
+    {0,1,2,3,4,5,6},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0},
     {0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0}
 };
 
 int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
@@ -83,10 +82,8 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
   {PT,PT,PT,PT,PT,PT,PT},
   {PG,PG,PG,PG,PG,PG,PG},
   {PK,PK,PK,PK,PK,PK,PK},
+  {PA,PA,PA,PA,PA,PA,PA},
   {PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN},
   {PS},
   {PS},
-  {PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA},
-  {PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA,PA},
-  {PA,PA,PA,PA}
 };
