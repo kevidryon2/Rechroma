@@ -9,12 +9,12 @@
 
 #define CURRMAP res.levels[clvl].map
 #define CURRDVAL res.levels[clvl].dvalmap
-#define VERSTR "v0.09p1"
+#define VERSTR "v0.09p2"
 #define MAX_LEVELS (8*10)
 
-const short currver = 0x0091;
+const short currver = 0x0092;
 const char currbuild = 1;
-const short currver_re = 0x9100;
+const short currver_re = 0x9200;
 
 #define NUM_SOUNDS 6
 
@@ -28,7 +28,7 @@ const short currver_re = 0x9100;
 Sound sounds[NUM_SOUNDS];
 
 char *soundnames[NUM_SOUNDS] = {
-  "crash.wav","bump.wav","break.wav","push.wav", "music_intro.wav", "music-loop.wav"
+  "crash.wav","bump.wav","break.wav","push.wav", "music_intro.ogg", "music-loop.ogg"
 };
 
 void playSound(int sound) {

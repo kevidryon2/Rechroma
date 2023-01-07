@@ -5,7 +5,7 @@
 
 typedef enum {
   air = 0,
-  stone, colored, dye, key, door, unlockedDoor, warp, player, monster
+  stone, colored, dye, key, door, unlockedDoor, warp, player, monster, resetter
 } blockid;
 
 bool show_only_editor[NUM_BLOCKS][MAX_DATAVALS] = {
@@ -18,6 +18,7 @@ bool show_only_editor[NUM_BLOCKS][MAX_DATAVALS] = {
     {false,false,false,false,false,false,false,false},
     {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true},
     {true},
+    {false},
     {false}
 };
 
@@ -32,6 +33,7 @@ int blocktile[NUM_BLOCKS][MAX_DATAVALS] = {
     {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9}, //warp
     {10}, //player
     {11}, //monster
+    {5}, //color resetter
 };
 
 typedef enum {
@@ -69,6 +71,7 @@ Color tilecolors[NUM_BLOCKS][MAX_DATAVALS] = {
     {WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE,WHITE},
     {WHITE},
     {WHITE},
+    {WHITE}
 };
 
 Color worldcolors[] = {
@@ -86,6 +89,7 @@ int tileparams[NUM_BLOCKS][MAX_DATAVALS] = {
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0},
     {0},
+    {0}
 };
 
 int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
@@ -99,4 +103,5 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
   {PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN},
   {PA},
   {PS},
+  {PT}
 };

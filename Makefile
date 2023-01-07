@@ -21,13 +21,14 @@ clean:
 	touch build/rechroma
 
 release:
+	rm build/release.tar
 	make tools
 	make launcher
 	make install
-	cp *.wav build
+	cp *.ogg build
 	cp data.rrf build
 	cd build
-	tar -cf build/release.tar ./*.*
+	tar -cf build/release.tar build/*
 
 tools:
 	#gcc makedropper.c -o tools/makedropperfiles
