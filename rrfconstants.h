@@ -5,13 +5,11 @@
 #include <math.h>
 #include "blocks.h"
 
-#define CURRMAP res.levels[clvl].map
-#define CURRDVAL res.levels[clvl].dvalmap
-
 #pragma once
 
+#define CURRMAP res.levels[clvl].map
+#define CURRDVAL res.levels[clvl].dvalmap
 #define VERSTR "v0.09p1"
-
 #define MAX_LEVELS (8*10)
 
 const short currver = 0x0091;
