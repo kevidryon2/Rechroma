@@ -36,12 +36,18 @@ typedef struct {
 
 void linit() {
   gotolevel(0);
+  playSound(MUSIC_INTRO);
 }
 
-int t = 0;
+int t = 1;
 
 void lupdate() {
   t++;
+  if (t==480) {
+    playSound(MUSIC_LOOP);
+  } else if (!((t-480)%1620)) {
+    playSound(MUSIC_LOOP);
+  }
   switch (GetKeyPressed()) {
     case KEY_W:
       checkCollision(CURRMAP[px][py-1],CURRDVAL[px][py-1],0,-1);
@@ -87,7 +93,11 @@ void ldraw() {
         if (editor) {
           cputc(
           blocktile [ getblock(x,y) ] [ getdval(x,y) ], x, y,
-          tilecolors[ getblock(x,y) ] [ getblock(x,y) ], BLACK);
+          tilecolors[ getblock(x,y) ] [ getdval(x,y) ], BLACK);
+        } else {
+          cputc(
+          air, x, y,
+          BLACK, BLACK);
         }
       } else {
         cputc(
@@ -99,7 +109,7 @@ void ldraw() {
   cputc('A'+(clvl/10),0,19,worldcolors[clvl/10],(Color){32,32,32,255});
   cputc('-',1,19,WHITE,(Color){32,32,32,255});
   cputc('0'+clvl%10,2,19,WHITE,(Color){32,32,32,255});
-  cputc(blocktile[player][0], px, py, worldcolors[pcol], BLANK);
+  if (!editor) cputc(blocktile[player][0], px, py, worldcolors[pcol], BLANK);
   cputs(TextFormat(" X:%02d Y:%02d                                ",px,py),3,19,WHITE,(Color){32,32,32,255});
   int x=14;
   for (int i=0; i<NUM_ITEMS; i++) {

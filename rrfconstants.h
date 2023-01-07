@@ -10,24 +10,27 @@
 
 #pragma once
 
-#define VERSTR "v0.08p3"
+#define VERSTR "v0.09p1"
 
 #define MAX_LEVELS (8*10)
 
-const short currver = 0x0080;
+const short currver = 0x0091;
 const char currbuild = 1;
-const short currver_re = 0x8000;
-#define NUM_SOUNDS 4
+const short currver_re = 0x9100;
+
+#define NUM_SOUNDS 6
 
 #define SOUND_CRASH 0
 #define SOUND_BUMP 1
 #define SOUND_BREAK 2
 #define SOUND_PUSH 3
+#define MUSIC_INTRO 4
+#define MUSIC_LOOP 5
 
 Sound sounds[NUM_SOUNDS];
 
 char *soundnames[NUM_SOUNDS] = {
-  "crash.wav","bump.wav","break.wav","push.wav"
+  "crash.wav","bump.wav","break.wav","push.wav", "music_intro.wav", "music-loop.wav"
 };
 
 void playSound(int sound) {

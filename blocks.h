@@ -97,6 +97,6 @@ int tilecollision[NUM_BLOCKS][MAX_DATAVALS] = {
   {PK,PK,PK,PK,PK,PK,PK},
   {PA,PA,PA,PA,PA,PA,PA},
   {PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN,PN},
-  {PS},
+  {PA},
   {PS},
 };
