@@ -92,6 +92,7 @@ void update() {
   while (k = GetKeyPressed()) {
     detectkey(k);
   }
+  t++;
   if (t==480) {
     playSound(MUSIC_LOOP);
   } else if (!((t-480)%1620)) {
@@ -125,9 +126,10 @@ int main() {
   if (!IsAudioDeviceReady ()){
     crash("Cannot initialize audio device","");
   }
-  playSound(MUSIC_INTRO);
 	InitWindow(720,480,"Level Maker");
-	SetTargetFPS(60);
+	SetTargetFPS(30);
+  loadSounds();
+  playSound(MUSIC_INTRO);
 	while (!WindowShouldClose()) {
 		update();
 		BeginDrawing();

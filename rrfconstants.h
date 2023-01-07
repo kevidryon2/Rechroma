@@ -9,12 +9,12 @@
 
 #define CURRMAP res.levels[clvl].map
 #define CURRDVAL res.levels[clvl].dvalmap
-#define VERSTR "v0.09p2"
+#define VERSTR "v0.09"
 #define MAX_LEVELS (8*10)
 
-const short currver = 0x0092;
+const short currver = 0x0090;
 const char currbuild = 1;
-const short currver_re = 0x9200;
+const short currver_re = 0x9000;
 
 #define NUM_SOUNDS 6
 
